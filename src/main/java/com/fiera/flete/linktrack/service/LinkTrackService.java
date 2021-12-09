@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fiera.flete.linktrack.dto.LinkTrackDto;
-import com.fiera.flete.linktrack.model.LinkTrack;
+import com.fiera.flete.traker.entities.LinkTrack;
 import com.fiera.flete.linktrack.repository.LinkTrackRepository;
 
 @Service
