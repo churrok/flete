@@ -70,7 +70,7 @@ public class LinkTrackService {
 
 	private LinkTrackDto entityToDto(LinkTrack linkTrack) throws UnknownHostException {
 		
-		LinkTrackDto linkTrackDto = new LinkTrackDto();
+		LinkTrackDto linkTrackDto =new LinkTrackDto();
 		
 		linkTrackDto.setTarget(linkTrack.getTarget());
 		linkTrackDto.setUrl(getHostAddress() + ":" + port +"/" + linkTrack.getId());
