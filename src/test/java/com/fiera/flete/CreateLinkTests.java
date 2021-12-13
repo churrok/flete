@@ -40,4 +40,16 @@ public class CreateLinkTests {
     LinkTrack linkTrack = createLink.create(null,password);
     assertThat(linkTrack).isNull();
   }
+
+  @Test
+  void creatLinkFromUrlNullPassword(){
+    ILinkRepository linkRepository = new InMemoryLinkRepository();
+    CreateLink createLink = CreateLink.builder()
+            .linkRepository(linkRepository)
+            .idGenerator(new IdGenerator())
+            .build();
+    String url = "http://www.fierastudio.com";
+    LinkTrack linkTrack = createLink.create(url,null);
+    assertThat(linkTrack).isNull();
+  }
 }

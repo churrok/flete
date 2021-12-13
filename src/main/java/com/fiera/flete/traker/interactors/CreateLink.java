@@ -20,6 +20,9 @@ public class CreateLink {
   }
 
   public LinkTrack create(String url,String password) {
+    if(url == null || password == null){
+      return null;
+    }
     LinkTrack link = LinkTrack.builder()
         .id(idGenerator.generate())
         .valid(true).usos(0)

@@ -4,17 +4,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fiera.flete.traker.entities.LinkTrack;
 import com.fiera.flete.traker.interactors.CreateLink;
+import com.fiera.flete.traker.interactors.FindTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fiera.flete.linktrack.dto.LinkTrackDto;
 import com.fiera.flete.linktrack.service.LinkTrackService;
@@ -28,6 +26,9 @@ public class LinkTrackController {
 
   @Autowired
   private CreateLink createLink;
+
+  @Autowired
+  private FindTarget findTarget;
 
   @RequestMapping(value = "/create", method = RequestMethod.POST)
   public ResponseEntity<?> create(@Param(value = "url") String url, @Param(value = "password") String password) {
@@ -43,7 +44,7 @@ public class LinkTrackController {
   public void redirect(@PathVariable(value = "idLinkTrack") String id, @Param(value = "password") String password, HttpServletResponse httpServletResponse) {
 
     try {
-      String url = this.linkTrackService.getLinkRedirect(id, password);
+      String url = findTarget.getTarget(id, password);
 
       httpServletResponse.setHeader("Location", url);
       httpServletResponse.setStatus(302);
